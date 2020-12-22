@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  aqueduct: ^3.3.0+1
   shared_preferences: ^0.5.12+4
   provider: ^4.3.2+3
 
@@ -33,8 +34,6 @@ dependencies:
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-  integration_test:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the

@@ -24,3 +24,4 @@ Game page exists.
 22.12.20:
 Working on Database. 
 Put Project on Github. 
+Added data to Database for testing
