@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  aqueduct: ^3.3.0+1
+  http: ^0.12.2
   shared_preferences: ^0.5.12+4
   provider: ^4.3.2+3
 

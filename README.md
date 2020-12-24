@@ -25,3 +25,10 @@ Game page exists.
 Working on Database. 
 Put Project on Github. 
 Added data to Database for testing
+
+23.12.20:
+Managed to access Postgresql database through Node.js
+(wasted a whole day getting this to work, had to reinstall Postgresql)
+
+24.12.20:
+Implemented proper Login Page logic
