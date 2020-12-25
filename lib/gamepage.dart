@@ -82,11 +82,24 @@ class GamePageState extends State<GamePage> {
       if (!selected.contains(id)) {
         for (var i = 0; i < selected.length; i++) {
           String check = selected[i];
-          String letter = check.substring(0, 1);
-          String number = check.substring(1, 2);
-          if (id.substring(0, 1) == letter || id.substring(1, 2) == number) {
+          String checkLetter = check.substring(0, 1);
+          String checkNumber = check.substring(1, 2);
+          String idLetter = id.substring(0, 1);
+          String idNumber = id.substring(1, 2);
+          if (idLetter == checkLetter || idNumber == checkNumber) {
             change = false;
             break;
+          }
+          if (isQueen){
+            int checkLetterPos = letters.indexOf(checkLetter);
+            int checkNumberPos = numbers.indexOf(checkNumber);
+            int idLetterPos = letters.indexOf(idLetter);
+            int idNumberPos = numbers.indexOf(idNumber);
+            double diagonal = (checkLetterPos-idLetterPos)/(checkNumberPos-idNumberPos);
+            if (diagonal == 1 || diagonal == -1){
+              change = false;
+              break;
+            }
           }
         }
         if (change) {

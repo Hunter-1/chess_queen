@@ -31,4 +31,9 @@ Managed to access Postgresql database through Node.js
 (wasted a whole day getting this to work, had to reinstall Postgresql)
 
 24.12.20:
-Implemented proper Login Page logic
+Implemented proper Login Page logic 
+Implemented proper results Page logic
+
+25.12.20:
+Queen placement logic implemented
+Proper Register Page Logic implemented
