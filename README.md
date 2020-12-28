@@ -37,3 +37,5 @@ Implemented proper results Page logic
 25.12.20:
 Queen placement logic implemented
 Proper Register Page Logic implemented
+
+28.12.20:

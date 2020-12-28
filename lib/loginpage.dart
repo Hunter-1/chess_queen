@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:chess_queen/Model/user.dart';
 import 'package:chess_queen/Model/text.dart';
 import 'package:chess_queen/config.dart';
-import 'package:chess_queen/userpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -73,7 +72,7 @@ class LoginPageState extends State<LoginPage> {
             .toList();
         User user = parsedUsers.first;
         if (user.password == password) {
-          Navigator.pushNamed(context, UserPage.routeName, arguments: user);
+          Navigator.pushNamed(context, "/users", arguments: user);
         } else {
           errorText = "incorrect password";
         }

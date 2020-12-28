@@ -46,7 +46,7 @@ class MyAppState extends State<MyApp> {
               "/": (context) => HomePage(),
               "/login": (context) => LoginPage(),
               "/settings": (context) => SettingsPage(),
-              UserPage.routeName: (context) => UserPage(),
+              "/user": (context) => UserPage(),
               "/register": (context) => RegisterPage(),
               "/gameselect": (context) => GameSelectPage(),
               "/gamequeen": (context) => GamePage(true),

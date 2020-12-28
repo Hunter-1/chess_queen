@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'Model/text.dart';
+import 'Model/user.dart';
 
 class GamePage extends StatefulWidget {
   final bool isQueen;
@@ -32,12 +33,12 @@ class GamePageState extends State<GamePage> {
   }
   @override
   Widget build(BuildContext context) {
+    final User user = ModalRoute.of(context).settings.arguments;
     if (timer == null)
       timer = Timer.periodic(Duration(seconds: 1), (Timer t)
       {
         handleTick();
       });
-
     return Scaffold(
         appBar: AppBar(title: Text("Chess Game")),
         body: Column(children: <Widget>[

@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'Model/user.dart';
 
 class UserPage extends StatefulWidget{
-  static const routeName = "/user";
   @override
   UserPageState createState() => new UserPageState();
 }
 
 class UserPageState extends State<UserPage> {
-
-
   @override
   Widget build(BuildContext context) {
     final User user = ModalRoute.of(context).settings.arguments;
@@ -20,7 +17,7 @@ class UserPageState extends State<UserPage> {
             children: <Widget>[
               Container(alignment: Alignment.center,
                 child: CustomText(text: user.username)),
-              CustomButton(text: "Start Game", onPressed: () {Navigator.pushNamed(context,"/gameselect" );}),
+              CustomButton(text: "Start Game", onPressed: () {Navigator.pushNamed(context,"/gameselect", arguments: user);}),
               CustomButton(text: "Resultate", onPressed: () {Navigator.pushNamed(context,"/results");}),
               CustomButton(text: "Abmelden", onPressed: () {Navigator.pushNamed(context,"/" );})
             ]
@@ -28,4 +25,3 @@ class UserPageState extends State<UserPage> {
     );
   }
 }
-//TODO Implement UserPage Logic
