@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'Model/score.dart';
 
 class ResultsPage extends StatelessWidget{
+  String routename = "/results";
   final List<String> entries = <String>["A","B","C"];
   List<Score> scorelist;
   @override

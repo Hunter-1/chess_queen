@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:chess_queen/Model/text.dart';
-import 'package:chess_queen/userpage.dart';
+import 'package:chess_queen/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:chess_queen/config.dart';
 import 'package:http/http.dart' as http;
 
-import 'Model/user.dart';
-
 class RegisterPage extends StatefulWidget{
+  String routename = "/register";
   @override
   RegisterPageState createState() => new RegisterPageState();
 }
@@ -87,7 +86,7 @@ class RegisterPageState extends State<RegisterPage>{
       errortext1 = response.statusCode.toString();
     });
     if (response.statusCode == 201){
-      Navigator.pushNamed(context,"/login" );;
+      Navigator.pushNamed(context,LoginPage().routename );;
       }
     }
   }

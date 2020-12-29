@@ -2,10 +2,13 @@ import 'dart:convert';
 import 'package:chess_queen/Model/user.dart';
 import 'package:chess_queen/Model/text.dart';
 import 'package:chess_queen/config.dart';
+import 'package:chess_queen/registerpage.dart';
+import 'package:chess_queen/userpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget{
+  String routename = "/login";
   @override
   LoginPageState createState() => new LoginPageState();
 }
@@ -53,7 +56,7 @@ class LoginPageState extends State<LoginPage> {
                   fetchUserData(
                     userController.text, passwordController.text
                   )),
-              CustomButton(text: "Neuer Benutzer", onPressed: () {Navigator.pushNamed(context,"/register" );}),
+              CustomButton(text: "Neuer Benutzer", onPressed: () {Navigator.pushNamed(context,RegisterPage().routename );}),
               Text(loadingText),
               Text(errorText)
           ]
@@ -72,7 +75,7 @@ class LoginPageState extends State<LoginPage> {
             .toList();
         User user = parsedUsers.first;
         if (user.password == password) {
-          Navigator.pushNamed(context, "/user", arguments: user);
+          Navigator.pushNamed(context, UserPage().routename, arguments: user);
         } else {
           errorText = "incorrect password";
         }

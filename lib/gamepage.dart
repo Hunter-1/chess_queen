@@ -7,9 +7,10 @@ import 'Model/user.dart';
 import 'package:http/http.dart' as http;
 
 class GamePage extends StatefulWidget {
+  String routequeen = "/gamequeen";
+  String routerook = "/gamerook";
   final bool isQueen;
   GamePage(this.isQueen);
-
   @override
   GamePageState createState() => new GamePageState(isQueen);
 }

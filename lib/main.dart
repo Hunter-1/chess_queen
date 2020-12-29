@@ -13,6 +13,7 @@ import 'loginpage.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatefulWidget {
+  String routename ="/";
   @override
   MyAppState createState() => MyAppState();
 }
@@ -41,17 +42,17 @@ class MyAppState extends State<MyApp> {
           return MaterialApp(
             title: '8 Queens Puzzle',
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-            initialRoute: "/",
+            initialRoute: MyApp().routename,
             routes:{
-              "/": (context) => HomePage(),
-              "/login": (context) => LoginPage(),
-              "/settings": (context) => SettingsPage(),
-              "/user": (context) => UserPage(),
-              "/register": (context) => RegisterPage(),
-              "/gameselect": (context) => GameSelectPage(),
-              "/gamequeen": (context) => GamePage(true),
-              "/gamerook": (context) => GamePage(false),
-              "/results": (context) => ResultsPage()
+              MyApp().routename: (context) => HomePage(),
+              LoginPage().routename: (context) => LoginPage(),
+              SettingsPage().routename: (context) => SettingsPage(),
+              UserPage().routename: (context) => UserPage(),
+              RegisterPage().routename: (context) => RegisterPage(),
+              GameSelectPage().routename: (context) => GameSelectPage(),
+              GamePage(true).routequeen: (context) => GamePage(true),
+              GamePage(false).routerook: (context) => GamePage(false),
+              ResultsPage().routename: (context) => ResultsPage()
             },
           );
         }
@@ -61,6 +62,7 @@ class MyAppState extends State<MyApp> {
 }
 
 class SettingsPage extends StatefulWidget {
+  String routename = "/settings";
   @override
   SettingsPageState createState() => new SettingsPageState();
 }
