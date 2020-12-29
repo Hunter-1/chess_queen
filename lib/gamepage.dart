@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-
+import 'package:chess_queen/config.dart';
 import 'Model/text.dart';
 import 'Model/user.dart';
+import 'package:http/http.dart' as http;
 
 class GamePage extends StatefulWidget {
   final bool isQueen;
@@ -64,7 +66,7 @@ class GamePageState extends State<GamePage> {
                   onPressed: () {
                     String id = letters[(index / 8).floor()] +
                         numbers[index % 8];
-                    toggleSelected(id);
+                    toggleSelected(id, user);
                   },
                 ),
               );
@@ -77,7 +79,7 @@ class GamePageState extends State<GamePage> {
     );
   }
 
-  void toggleSelected(String id) {
+  void toggleSelected(String id, User user) {
     setState(() {
       var change = true;
       if (!selected.contains(id)) {
@@ -107,7 +109,7 @@ class GamePageState extends State<GamePage> {
           selected.add(id);
           moves++;
           if (selected.length == 8){
-            winState();
+            winState(user);
           }
         }
       } else {
@@ -119,7 +121,7 @@ class GamePageState extends State<GamePage> {
     });
   }
 
-  void winState(){
+  void winState(User user){
     isActive = false;
     showDialog(context: context,
         builder: (BuildContext context) {
@@ -127,17 +129,10 @@ class GamePageState extends State<GamePage> {
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                        text: "You Win",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 40
-                        )
-                    ),
-                  ),
+                  CustomText(text: "You Win!"),
                   CustomText(text: "Züge: " + moves.toString()),
                   timeText(),
+                  CustomButton(text: "Score speichern", onPressed: () {saveScore(user);})
                 ],
               )
           );
@@ -150,5 +145,23 @@ class GamePageState extends State<GamePage> {
     return
       CustomText(text: "Zeit: " + minutes.toString().padLeft(2,"0") + ":"
           + seconds.toString().padLeft(2,"0"));
+  }
+  void saveScore(User user) async {
+    var url = config.getUrl() + "scores/";
+    var body = jsonEncode({"moves":moves, "secondspassed":secondsPassed,"isqueen":isQueen,"user_id":user.id});
+    Map<String,String> header = {
+      "content-type": "application/json"
+    };
+    final response = await http.post(url,
+        headers: header,
+        body: body);
+    if (response.statusCode == 201){
+      showDialog(context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          content:CustomText(text: "Saved"),
+        );
+      });
+    }
   }
 }

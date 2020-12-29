@@ -39,3 +39,4 @@ Queen placement logic implemented
 Proper Register Page Logic implemented
 
 28.12.20:
+Saving Score to Database implemented

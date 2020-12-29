@@ -72,7 +72,7 @@ class LoginPageState extends State<LoginPage> {
             .toList();
         User user = parsedUsers.first;
         if (user.password == password) {
-          Navigator.pushNamed(context, "/users", arguments: user);
+          Navigator.pushNamed(context, "/user", arguments: user);
         } else {
           errorText = "incorrect password";
         }
