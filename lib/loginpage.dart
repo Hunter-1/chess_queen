@@ -65,9 +65,11 @@ class LoginPageState extends State<LoginPage> {
   }
   fetchUserData(String username, String password) async {
     var url = config.getUrl() + "users/" + username;
+    /**
     setState(() {
       loadingText = url;
     });
+    **/
     final response = await http.get(url);
     if (response.statusCode == 200){
         final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();

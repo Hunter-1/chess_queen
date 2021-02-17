@@ -9,7 +9,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("8 Damen Problem")),
+      appBar: AppBar(title: Text("8 Damen Problem"),
+          automaticallyImplyLeading: false),
       body: Column(children: <Widget>[
         new Image.asset("assets/images/queen.png"),
         CustomButton(text: "Anmelden",

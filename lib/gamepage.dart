@@ -133,7 +133,10 @@ class GamePageState extends State<GamePage> {
                   CustomText(text: "You Win!"),
                   CustomText(text: "Züge: " + moves.toString()),
                   timeText(),
-                  CustomButton(text: "Score speichern", onPressed: () {saveScore(user);})
+                  CustomButton(text: "Score speichern", onPressed: () {
+                    saveScore(user);
+                  Navigator.pop(context);
+                  Navigator.pop(context);})
                 ],
               )
           );

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:chess_queen/config.dart';
 import 'package:http/http.dart' as http;
 
+import 'Model/user.dart';
+
 class RegisterPage extends StatefulWidget{
   String routename = "/register";
   @override
@@ -74,19 +76,32 @@ class RegisterPageState extends State<RegisterPage>{
   }
   createUserData(String username, String password, String confirmPassword) async {
     if (password == confirmPassword){
-    var url = config.getUrl() + "users/";
-    var body = jsonEncode({"name":username, "password":password});
-    Map<String,String> header = {
-      "content-type": "application/json"
-    };
-    final response = await http.post(url,
-    headers: header,
-    body: body);
-    setState(() {
-      errortext1 = response.statusCode.toString();
-    });
-    if (response.statusCode == 201){
-      Navigator.pushNamed(context,LoginPage().routename );;
+      var urlcheck = config.getUrl() + "users/" + username;
+      final responsecheck = await http.get(urlcheck);
+      User user;
+      if (responsecheck.statusCode == 200) {
+        final parsed = jsonDecode(responsecheck.body).cast<Map<String, dynamic>>();
+        List<User> parsedUsers = parsed.map<User>((json) => User.fromJson(json))
+            .toList();
+        if (parsedUsers.isNotEmpty){
+          user = parsedUsers.first;
+        }
+      }
+      if (user == null) {
+        var url = config.getUrl() + "users/";
+        var body = jsonEncode({"name":username, "password":password});
+        Map<String,String> header = {
+          "content-type": "application/json"
+        };
+        final response = await http.post(url,
+            headers: header,
+            body: body);
+        setState(() {
+          errortext1 = response.statusCode.toString();
+        });
+        if (response.statusCode == 201){
+          Navigator.pushNamed(context,LoginPage().routename );;
+        }
       }
     }
   }
