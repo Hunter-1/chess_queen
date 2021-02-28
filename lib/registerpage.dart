@@ -31,46 +31,61 @@ class RegisterPageState extends State<RegisterPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Registrieren")),
-        body: Column(
-            children: <Widget>[
-              Container (
-                margin: const EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
-                child: TextField(
-                  controller: userController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Benutzername"
+        appBar: AppBar(title: Text("Registrieren", style: TextStyle(color: Colors.blueAccent),),
+          iconTheme: IconThemeData(color: Colors.blueAccent),
+          backgroundColor: Colors.transparent,
+          elevation: 0,),
+        body: Container(
+          margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+          child: Column(
+              children: <Widget>[
+                Container(
+                  child: Icon(Icons.person_add,
+                  size: 200,),
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                ),
+                Container (
+                  margin: const EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
+                  child: TextField(
+                    controller: userController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Benutzername"
+                    ),
                   ),
                 ),
-              ),
-              Container (
-                margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
-                child: TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Passwort"
+                Container (
+                  margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
+                  child: TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Passwort"
+                    ),
                   ),
                 ),
-              ),
-              Container (
-                margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
-                child: TextField(
-                  controller: passwordConfirmController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Passwort bestätigen"
+                Container (
+                  margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
+                  child: TextField(
+                    controller: passwordConfirmController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Passwort bestätigen"
+                    ),
                   ),
                 ),
-              ),
-              CustomButton(text: "Registrieren", onPressed: () =>
-                  createUserData(
-                      userController.text, passwordController.text, passwordConfirmController.text
-                  )),
-              Text(errortext1),
-              Text(errortext2)
-            ]
+                Spacer(),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: CustomButton(text: "Registrieren", onPressed: () =>
+                      createUserData(
+                          userController.text, passwordController.text, passwordConfirmController.text
+                      )),
+                ),
+                Text(errortext1),
+                Text(errortext2)
+              ]
+          ),
         )
     );
   }

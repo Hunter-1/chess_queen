@@ -12,7 +12,10 @@ class ResultsPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Resultate")),
+      appBar: AppBar(title: Text("Resultate", style: TextStyle(color: Colors.blueAccent),),
+        iconTheme: IconThemeData(color: Colors.blueAccent),
+        backgroundColor: Colors.transparent,
+        elevation: 0,),
       body: FutureBuilder<List<Score>>(
         future: fetchAllScoreData(),
         initialData: [],
@@ -38,20 +41,6 @@ class ResultsPage extends StatelessWidget{
         }
       ),
     );
-    /**
-    return Scaffold(
-        appBar: AppBar(title: Text("Resultate")),
-        body: ListView.builder(
-          padding: EdgeInsets.all(8),
-          itemCount: scorelist.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 50,
-                child: Center(child: Text("Entry ${scorelist[index].username}")),
-            );
-          },
-        )
-      ); **/
   }
   Future<List<Score>> fetchAllScoreData() async {
     var url = config.getUrl() + "scores";

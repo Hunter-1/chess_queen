@@ -43,35 +43,41 @@ class GamePageState extends State<GamePage> {
         handleTick();
       });
     return Scaffold(
-        appBar: AppBar(title: Text("Chess Game")),
+        appBar: AppBar(title: Text("Chess Game", style: TextStyle(color: Colors.blueAccent),),
+          iconTheme: IconThemeData(color: Colors.blueAccent),
+          backgroundColor: Colors.transparent,
+          elevation: 0,),
         body: Column(children: <Widget>[
-          new GridView.builder(
-            shrinkWrap: true,
-            itemCount: 64,
-            gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 8,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0),
-            itemBuilder: (BuildContext context, int index) {
-              var row;
-              (index / 8).floor() % 2 == 0 ? row = 0 : row = 1;
-              return Container(
-                color: (index % 2) + row == 1 ? Colors.white : Colors.black,
-                child: new IconButton(
-                  icon: selected.contains(
-                      letters[(index / 8).floor()] + numbers[index % 8])
-                      ? isQueen ? Image.asset("assets/images/queen.png") :
-                  Image.asset("assets/images/rook.png") :
-                  Image.asset("assets/images/blank.png"),
-                  onPressed: () {
-                    String id = letters[(index / 8).floor()] +
-                        numbers[index % 8];
-                    toggleSelected(id, user);
-                  },
-                ),
-              );
-            },
+          Container(
+            margin: EdgeInsets.fromLTRB(20, 50, 20, 150),
+            child: new GridView.builder(
+              shrinkWrap: true,
+              itemCount: 64,
+              gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 8,
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0),
+              itemBuilder: (BuildContext context, int index) {
+                var row;
+                (index / 8).floor() % 2 == 0 ? row = 0 : row = 1;
+                return Container(
+                  color: (index % 2) + row == 1 ? Colors.white : Colors.black,
+                  child: new IconButton(
+                    icon: selected.contains(
+                        letters[(index / 8).floor()] + numbers[index % 8])
+                        ? isQueen ? Image.asset("assets/images/queen.png") :
+                    Image.asset("assets/images/rook.png") :
+                    Image.asset("assets/images/blank.png"),
+                    onPressed: () {
+                      String id = letters[(index / 8).floor()] +
+                          numbers[index % 8];
+                      toggleSelected(id, user);
+                    },
+                  ),
+                );
+              },
+            ),
           ),
           CustomText(text: "Züge: " + moves.toString()),
           timeText(),

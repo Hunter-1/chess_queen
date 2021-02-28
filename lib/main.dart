@@ -1,11 +1,12 @@
-import 'package:chess_queen/Model/provider.dart';
-import 'package:chess_queen/gamepage.dart';
-import 'package:chess_queen/gameselectpage.dart';
-import 'package:chess_queen/registerpage.dart';
-import 'package:chess_queen/resultspage.dart';
-import 'package:chess_queen/userpage.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'Model/provider.dart';
+import 'gamepage.dart';
+import 'gameselectpage.dart';
+import 'registerpage.dart';
+import 'resultspage.dart';
+import 'userpage.dart';
+import 'package:flutter/material.dart';
+import 'Model/provider.dart';
 import 'Model/style.dart';
 import 'homepage.dart';
 import 'loginpage.dart';
@@ -40,6 +41,7 @@ class MyAppState extends State<MyApp> {
       child: Consumer<DarkThemeProvider>(
         builder: (BuildContext context, value, Widget child){
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: '8 Queens Puzzle',
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
             initialRoute: MyApp().routename,
@@ -73,24 +75,42 @@ class SettingsPageState extends State<SettingsPage>{
     {
       final themeChange = Provider.of<DarkThemeProvider>(context);
       return Scaffold(
-      appBar: AppBar(title: Text("Einstellungen")),
+      appBar: AppBar(title: Text("Einstellungen", style: TextStyle(color: Colors.blueAccent),),
+        iconTheme: IconThemeData(color: Colors.blueAccent),
+        backgroundColor: Colors.transparent,
+        elevation: 0,),
       body: Column(
+        children: <Widget>[
+          Container(
+            child: Icon(Icons.settings,
+            size: 400,),
+            margin: EdgeInsets.fromLTRB(0, 20, 0, 150),
+          ),
+        Container(
+          margin: EdgeInsets.fromLTRB(50, 0, 50, 0),
+          child: Row(
      children: <Widget>[
-      RichText(text: TextSpan(
-      text: "Darkmode",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 40
+          RichText(text: TextSpan(
+          text: "Darkmode",
+              style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 40,
+              )
           )
-      )
     ),
+                  Spacer(),
      Switch(value: themeChange.darkTheme, onChanged: (value){
      setState(() {
      themeChange.darkTheme = value;
      });
      })
      ],
-     ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+          ),
+        ),
+    ],
+      ),
     );
   }
   }

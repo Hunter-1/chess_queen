@@ -16,8 +16,12 @@ class UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     final User user = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-        appBar: AppBar(title: Text("Profil"),
-            automaticallyImplyLeading: false),
+        appBar: AppBar(title: Text("Profil", style: TextStyle(color: Colors.blueAccent),),
+            automaticallyImplyLeading: false,
+          iconTheme: IconThemeData(color: Colors.blueAccent),
+          backgroundColor: Colors.transparent,
+          elevation: 0,),
+
         body: Column(
             children: <Widget>[
               Container(alignment: Alignment.center,

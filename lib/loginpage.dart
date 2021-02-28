@@ -29,38 +29,51 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Anmelden")),
-          body: Column(
-            children: <Widget>[
-              Container (
-                margin: const EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
-                child: TextField(
-                  controller: userController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Benutzername"
+        appBar: AppBar(title: Text("Anmelden", style: TextStyle(color: Colors.blueAccent),),
+          iconTheme: IconThemeData(color: Colors.blueAccent),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+          body: Container(
+            margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  child: Icon(Icons.person,
+                    size: 200,),
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 40),
+                ),
+                Container (
+                  margin: const EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
+                  child: TextField(
+                    controller: userController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Benutzername"
+                    ),
+                  ),
+                ),
+                Container (
+                margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
+                  child: TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Passwort"
                   ),
                 ),
               ),
-              Container (
-              margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
-                child: TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Passwort"
-                ),
-              ),
-            ),
-              CustomButton(text: "Anmelden", onPressed: () =>
-                  fetchUserData(
-                    userController.text, passwordController.text
-                  )),
-              CustomButton(text: "Neuer Benutzer", onPressed: () {Navigator.pushNamed(context,RegisterPage().routename );}),
-              Text(loadingText),
-              Text(errorText)
-          ]
-        )
+                Spacer(),
+                CustomButton(text: "Anmelden", onPressed: () =>
+                    fetchUserData(
+                      userController.text, passwordController.text
+                    )),
+                CustomButton(text: "Neuer Benutzer", onPressed: () {Navigator.pushNamed(context,RegisterPage().routename );}),
+                Text(loadingText),
+                Text(errorText)
+            ]
+        ),
+          )
     );
   }
   fetchUserData(String username, String password) async {

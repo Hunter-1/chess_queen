@@ -9,10 +9,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("8 Damen Problem"),
-          automaticallyImplyLeading: false),
       body: Column(children: <Widget>[
-        new Image.asset("assets/images/queen.png"),
+        Container(child: new Image.asset("assets/images/queen.png"),
+          margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
+        ),
+        Container(
+          child: Text("8 Damen Problem",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 40,
+          ),),
+          margin: EdgeInsets.fromLTRB(0, 10, 0, 151),
+        ),
         CustomButton(text: "Anmelden",
             onPressed: () {Navigator.pushNamed(context,LoginPage().routename );}),
         CustomButton(text: "Einstellungen",
